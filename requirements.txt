@@ -1,0 +1,8 @@
+numpy==2.5.1
+opencv-python-headless==5.0.0.93
+Pillow==12.3.0
+scipy==1.18.0
+tensorboard==2.21.0
+torch==2.13.0
+torchvision==0.28.0
+tqdm==4.70.0

@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.pth
+*.pt
+*.onnx
+*.engine
+*.zip
+data/
+runs/
+checkpoints/
+inference/
+third_party/CrowdCounting-P2PNet/vis/
+third_party/CrowdCounting-P2PNet/.git-upstream-backup/
+.DS_Store
