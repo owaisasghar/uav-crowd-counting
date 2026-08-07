@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: >-
+  If you use this implementation, cite this software and the upstream P2PNet
+  paper. If you use the VisDrone data, also follow its citation requirements.
+title: UAV P2PNet Head Detection and Crowd Counting
+type: software
+authors:
+  - family-names: Asghar
+    given-names: Awais
+repository-code: https://github.com/owaisasghar/uav-p2pnet-head-counting
+version: 1.0.0
+date-released: "2026-08-02"
+keywords:
+  - crowd counting
+  - head-point localization
+  - UAV imagery
+  - P2PNet
+  - VisDrone2020-CC
+references:
+  - type: conference-paper
+    title: >-
+      Rethinking Counting and Localization in Crowds: A Purely Point-Based
+      Framework
+    authors:
+      - family-names: Song
+        given-names: Qingyu
+      - family-names: Wang
+        given-names: Changan
+      - family-names: Jiang
+        given-names: Zhengkai
+      - family-names: Wang
+        given-names: Yabiao
+      - family-names: Tai
+        given-names: Ying
+      - family-names: Wang
+        given-names: Chengjie
+      - family-names: Li
+        given-names: Jilin
+      - family-names: Huang
+        given-names: Feiyue
+      - family-names: Wu
+        given-names: Yang
+    collection-title: 2021 IEEE/CVF International Conference on Computer Vision
+    year: 2021
+    url: https://openaccess.thecvf.com/content/ICCV2021/html/Song_Rethinking_Counting_and_Localization_in_Crowds_A_Purely_Point-Based_Framework_ICCV_2021_paper.html
+  - type: article
+    title: >-
+      On-Board Crowd Counting and Density Estimation Using Low Altitude
+      Unmanned Aerial Vehicles—Looking beyond Beating the Benchmark
+    authors:
+      - family-names: Ptak
+        given-names: Bartosz
+      - family-names: Pieczyński
+        given-names: Dominik
+      - family-names: Piechocki
+        given-names: Mateusz
+      - family-names: Kraft
+        given-names: Marek
+    journal: Remote Sensing
+    volume: 14
+    issue: 10
+    year: 2022
+    doi: 10.3390/rs14102288

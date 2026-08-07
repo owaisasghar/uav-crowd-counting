@@ -1,0 +1,9 @@
+{
+  "file": "model.safetensors",
+  "bytes": 86362656,
+  "sha256": "acb2f7196538fff3187b2e02fd9629802a9f7d5faec3d8bdbe9c47cd6ed003c9",
+  "tensors": 123,
+  "source_checkpoint": "runs/p2pnet_visdrone_fold0/checkpoints/best_mae.pth",
+  "source_checkpoint_epoch_zero_based": 48,
+  "optimizer_state_included": false
+}
