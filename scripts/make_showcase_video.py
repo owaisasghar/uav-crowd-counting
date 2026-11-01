@@ -28,7 +28,7 @@ W, H, FPS = 1920, 1080, 30
 FADE = 12
 FONTS = Path("/usr/share/fonts/truetype/noto")
 REPO = "github.com/owaisasghar/uav-crowd-counting"
-SPACE = "huggingface.co/spaces/uwaisasghar/uav-crowd-counting"
+MODEL = "huggingface.co/uwaisasghar/p2pnet-visdrone-head-counting"
 TRACK_DATA = PROJECT_ROOT / "data/raw/UP-COUNT-TRACK"
 UAVDOT_BGR, P2PNET_BGR = (255, 160, 40), (60, 90, 255)
 
@@ -245,8 +245,8 @@ def main() -> None:
             ("Code, evaluation and full report", 34, "SemiBold", grey),
             (REPO, 46, "Bold", white),
             ("", 16, "Regular", grey),
-            ("Try it: side-by-side demo", 34, "SemiBold", grey),
-            (SPACE, 40, "Bold", white),
+            ("Try both models on your own image: Open in Colab, linked from the repo", 34, "SemiBold", grey),
+            ("Model weights: " + MODEL, 30, "Regular", white),
             ("", 16, "Regular", grey),
             ("Built on P2PNet (Tencent), UAV-Dot and uav-dot-track (PUT Vision Lab)", 26, "Regular", grey),
         ], 0)], 4.5),

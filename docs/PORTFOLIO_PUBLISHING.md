@@ -56,6 +56,11 @@ Apache, or another permissive license.
 
 ## Hugging Face Space
 
+Hosting Gradio Spaces, even on the free CPU tier, requires a Hugging Face PRO
+subscription; creating one without PRO fails with `402 Payment Required`. Until
+then, the free public demo is `notebooks/demo.ipynb` (README "Open in Colab"
+badge), which runs the same models.
+
 The contents of `huggingface_space/` are intended to become a separate Gradio
 Space that compares UAV-Dot and P2PNet side by side:
 

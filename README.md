@@ -14,6 +14,10 @@ fast one deployable, tests whether more varied training data fixes its blind
 spots, and adds multi-person tracking so a video yields trajectories and
 unique-person counts, not just per-frame totals.
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/owaisasghar/uav-crowd-counting/blob/main/notebooks/demo.ipynb)
+**Try it:** run both models on your own aerial image in Google Colab (free GPU,
+no setup).
+
 ## What I built
 
 - **P2PNet trained for drone footage.** I adapted the ICCV 2021 model to
@@ -300,8 +304,13 @@ PYTHONPATH=. .venv/bin/python scripts/infer_p2p_video.py --input path/to/video.m
 ```
 
 - **`huggingface/`:** a ready model-repository package for P2PNet.
+- **[`notebooks/demo.ipynb`](https://colab.research.google.com/github/owaisasghar/uav-crowd-counting/blob/main/notebooks/demo.ipynb):** the free demo. It runs both models side
+  by side in Google Colab, P2PNet from
+  [Hugging Face](https://huggingface.co/uwaisasghar/p2pnet-visdrone-head-counting)
+  and UAV-Dot from the authors' mirror.
 - **`huggingface_space/`:** a Gradio demo that runs UAV-Dot and P2PNet side by
-  side on an uploaded image. Its standalone UAV-Dot runtime fetches the released
+  side on an uploaded image. Hosting it as a Hugging Face Space requires a PRO
+  account. Its standalone UAV-Dot runtime fetches the released
   weights from the authors' mirror and checks their SHA-256, so the weights are
   never re-hosted. It matches the original model on 99.6% of points.
 
