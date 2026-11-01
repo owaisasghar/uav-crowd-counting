@@ -30,7 +30,7 @@ Source and complete training documentation:
 The generic Hugging Face object-detection widget is disabled because its
 bounding-box output contract does not match point localization. Use the
 included inference script or the
-[Gradio Space](https://huggingface.co/spaces/uwaisasghar/uav-crowd-counting),
+[Colab notebook](https://colab.research.google.com/github/owaisasghar/uav-crowd-counting/blob/main/notebooks/demo.ipynb),
 which compares this model with UAV-Dot side by side.
 
 ## Results
