@@ -20,7 +20,7 @@ MODEL_ID = os.getenv(
 )
 LOCAL_MODEL_DIR = os.getenv("P2PNET_MODEL_DIR")
 UAVDOT_CHECKPOINT_DIR = Path(os.getenv("UAVDOT_CHECKPOINT_DIR", Path.home() / ".cache" / "uavdot"))
-REPOSITORY_URL = "https://github.com/owaisasghar/uav-p2pnet-head-counting"
+REPOSITORY_URL = "https://github.com/owaisasghar/uav-crowd-counting"
 _MODEL_LOCK = threading.Lock()
 _RUNTIME: ModuleType | None = None
 _MODEL: torch.nn.Module | None = None

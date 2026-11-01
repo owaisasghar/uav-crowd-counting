@@ -6,29 +6,29 @@ experiments, honest evaluation, and practical inference pipelines.
 
 ## Featured project
 
-### UAV P2PNet head-point localization
+### UAV crowd counting: head points, speed and tracking
 
-Direct individual head-point detection and crowd counting in 1,920×1,080
-VisDrone2020-CC imagery.
+Counting people in drone footage by locating every head, evaluated under the
+official DroneCrowd protocol on 900 held-out test frames.
 
-- P2PNet with a VGG16-BN backbone
-- 1,950 training frames and 290,556 annotated head points
-- Sequence-level validation split to reduce adjacent-frame leakage
-- Validation MAE: **10.0255**
-- Validation F1 at 16 px: **0.8148**
-- Image and scheduled-video inference with point-coordinate JSON
-- SafeTensors deployment export and Gradio demo
+- Trained P2PNet for drone footage: the most accurate counter tested (MAE 21.9)
+- Optimized UAV-Dot inference to 29 ms per 1080p frame, 3.9x faster than P2PNet at the same F1
+- Multi-person tracking with 5x faster detection than the reference pipeline;
+  unique-person count error cut from 32% to 10%
+- A documented negative result: extra training data fixed low-altitude scenes
+  but hurt night scenes, so a decision rule set before testing kept the original model
+- Side-by-side Gradio demo of both detectors
 
-[Source repository](https://github.com/owaisasghar/uav-p2pnet-head-counting)
+[Source repository](https://github.com/owaisasghar/uav-crowd-counting)
 
 ## Technical focus
 
 `Python` · `PyTorch` · `Computer Vision` · `Object Detection` ·
-`Point Localization` · `Crowd Counting` · `UAV Analytics` · `OpenCV` · `CUDA`
+`Point Localization` · `Crowd Counting` · `Multi-Object Tracking` · `UAV Analytics` · `OpenCV` · `CUDA`
 
 ## Current direction
 
-I am extending the aerial analytics work with independently evaluated vehicle
-detection, faster inference, multi-fold validation, and target-camera testing.
+I am extending the aerial analytics work with TensorRT deployment, night and
+low-altitude data, multi-fold validation, and aerial vehicle detection.
 
 <!-- Add verified contact, portfolio, LinkedIn, and Hugging Face links here. -->

@@ -1,6 +1,6 @@
 # UAV crowd counting: head points, speed and tracking
 
-[![Tests](https://github.com/owaisasghar/uav-p2pnet-head-counting/actions/workflows/tests.yml/badge.svg)](https://github.com/owaisasghar/uav-p2pnet-head-counting/actions/workflows/tests.yml)
+[![Tests](https://github.com/owaisasghar/uav-crowd-counting/actions/workflows/tests.yml/badge.svg)](https://github.com/owaisasghar/uav-crowd-counting/actions/workflows/tests.yml)
 
 ![Conceptual UAV head-point localization banner](assets/uav_p2pnet_social_preview.jpg)
 

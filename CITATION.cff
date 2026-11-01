@@ -2,12 +2,12 @@ cff-version: 1.2.0
 message: >-
   If you use this implementation, cite this software and the upstream P2PNet
   paper. If you use the VisDrone data, also follow its citation requirements.
-title: UAV P2PNet Head Detection and Crowd Counting
+title: "UAV Crowd Counting: Head Points, Speed and Tracking"
 type: software
 authors:
   - family-names: Asghar
     given-names: Awais
-repository-code: https://github.com/owaisasghar/uav-p2pnet-head-counting
+repository-code: https://github.com/owaisasghar/uav-crowd-counting
 version: 1.0.0
 date-released: "2026-08-02"
 keywords:
@@ -15,6 +15,8 @@ keywords:
   - head-point localization
   - UAV imagery
   - P2PNet
+  - UAV-Dot
+  - multi-object tracking
   - VisDrone2020-CC
 references:
   - type: conference-paper

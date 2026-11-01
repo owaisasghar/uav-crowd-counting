@@ -25,7 +25,7 @@ deterministic, sequence-level VisDrone2020-CC split. It returns one
 points as the crowd count.
 
 Source and complete training documentation:
-[`owaisasghar/uav-p2pnet-head-counting`](https://github.com/owaisasghar/uav-p2pnet-head-counting).
+[`owaisasghar/uav-crowd-counting`](https://github.com/owaisasghar/uav-crowd-counting).
 
 The generic Hugging Face object-detection widget is disabled because its
 bounding-box output contract does not match point localization. Use the

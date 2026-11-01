@@ -63,7 +63,7 @@ epoch 49 while training loss continued to decrease.
 ```bash
 mkdir -p runs/p2pnet_visdrone_fold0/checkpoints
 gh release download v1.0.0 \
-  --repo owaisasghar/uav-p2pnet-head-counting \
+  --repo owaisasghar/uav-crowd-counting \
   --pattern best_mae.pth \
   --dir runs/p2pnet_visdrone_fold0/checkpoints
 ```
