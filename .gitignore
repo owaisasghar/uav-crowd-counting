@@ -6,8 +6,12 @@ __pycache__/
 *.pt
 *.onnx
 *.engine
+*.safetensors
 *.zip
+*.mp4
+*.MP4
 data/
+external/
 runs/
 checkpoints/
 inference/

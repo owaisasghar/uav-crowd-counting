@@ -1,0 +1,48 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  point-metrics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+
+      - name: Install test dependencies
+        run: python -m pip install --requirement requirements-ci.txt
+
+      - name: Run metric tests
+        run: PYTHONPATH=. python -m pytest -q
+
+      - name: Compile portfolio scripts
+        run: >-
+          python -m py_compile
+          scripts/aggregate_fold_results.py
+          scripts/evaluate_p2p_localization.py
+          scripts/generate_report_assets.py
+          scripts/export_huggingface_model.py
+          scripts/infer_p2p.py
+          scripts/infer_p2p_video.py
+          scripts/p2p_metrics.py
+          huggingface/inference.py
+          huggingface/p2pnet_runtime.py
+          huggingface_space/app.py

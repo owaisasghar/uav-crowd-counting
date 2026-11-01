@@ -27,6 +27,28 @@ SHA-256: 8add58d38e1e0bb2d0de96500073eda9171d1af796488b5faf6e7b218df53233
 The checkpoint contains the model state plus optimizer, scheduler, and epoch
 metadata. Inference only loads the `model` state dictionary.
 
+## Inference-only SafeTensors export
+
+The portfolio package includes `scripts/export_huggingface_model.py`, which
+strictly validates the architecture and exports only the 123 model tensors:
+
+```text
+File: model.safetensors
+Size: 86,362,656 bytes
+SHA-256: acb2f7196538fff3187b2e02fd9629802a9f7d5faec3d8bdbe9c47cd6ed003c9
+Optimizer state included: no
+Source checkpoint epoch: 49 (zero-based value 48)
+```
+
+The standalone runtime was compared tensor-for-tensor with the vendored
+runtime on the same input. Both `pred_logits` and `pred_points` had a maximum
+absolute difference of 0.0. A held-out full-resolution inference produced the
+same 150 retained points at threshold 0.50.
+
+The model-repository package is documented in
+[`huggingface/README.md`](huggingface/README.md). Its generic bounding-box
+widget is disabled because this checkpoint returns points rather than boxes.
+
 ## Intended use
 
 - Academic analysis of crowd counts in aerial RGB images.
@@ -72,11 +94,40 @@ included in the repository or model release.
 |---|---:|
 | Validation MAE | **10.0255** |
 | Validation RMSE | **13.0832** |
+| Precision @ 16 px | **0.7988** |
+| Recall @ 16 px | **0.8315** |
+| F1 @ 16 px | **0.8148** |
+| Ranked AP @ 16 px | **0.8558** |
 | Validation images | 510 |
 
-These metrics describe count error. They do not establish point-localization
-precision, recall, F1, or nAP. “Accuracy” should not be reported as a percentage
-from these values.
+Count values use the fixed 0.50 training-log protocol. Boundary-aware deployment
+counting gives MAE 10.0235 and RMSE 13.0795. Localization uses one-to-one
+Hungarian matching with a 16-pixel maximum Euclidean distance. Ranked AP uses
+in-bounds proposals scoring above 0.001. It is a fixed-radius AP, not
+head-size-normalized nAP. “Accuracy” should not be reported as a percentage
+from the count values.
+
+Validation-only calibration selected threshold 0.60 for MAE 9.2902 and
+threshold 0.55 for F1@16px 0.8160. Those tuned values are not independent-test
+estimates.
+
+### Independent test set
+
+These results use the official VisDrone2020-CC test sequences (900 frames from
+30 sequences, 137.1 people per frame), the fixed 0.50 threshold and the
+DroneCrowd localization protocol (`scripts/evaluate_dronecrowd.py`):
+
+| Metric | Value |
+|---|---:|
+| Count MAE / RMSE | 21.86 / 29.58 |
+| Precision / recall / F1 @ 16 px | 0.745 / 0.706 / 0.725 |
+| L-mAP (DroneCrowd toolkit, 1–25 px) | 52.49 |
+| F1 @ 16 px on low-altitude sequences 00017, 00018 | 0.39 |
+| F1 @ 16 px on night sequences 00069, 00070, 00074 | 0.16 |
+| fp16 latency, 1920×1080, RTX 4060 Laptop GPU | 114.7 ms |
+
+The test MAE is about twice the validation MAE: the test set is harder (night,
+very low altitude and dense scenes) than the fold-0 validation sequences.
 
 ## Limitations and risks
 
@@ -85,17 +136,18 @@ from these values.
 - The validation result is from one fold and may overstate generalization.
 - Performance varies with altitude, ground sampling distance, camera angle,
   compression, weather, and geographic domain.
-- Confidence threshold 0.5 may not be optimal for a new deployment.
+- Validation-tuned thresholds may not transfer to a new deployment.
 - Training curves show overfitting after the best epoch.
 - Full-resolution inference is computationally expensive.
+- The custom runtime is required; this is not a native Transformers pipeline.
 - Crowd monitoring creates privacy and governance risks even when the model
   does not perform identity recognition.
 
 ## Recommended evaluation before deployment
 
 1. Create a held-out set from the actual drone, camera, altitude, and location.
-2. Report count MAE/RMSE and point precision/recall/F1 under a documented
-   matching radius.
+2. Repeat count MAE/RMSE and point precision/recall/F1 under the documented
+   matching radii.
 3. Sweep the confidence threshold without using the final test set.
 4. Report failure cases by density, altitude, view angle, illumination, and
    motion blur.
