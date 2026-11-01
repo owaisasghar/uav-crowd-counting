@@ -250,6 +250,9 @@ $UV scripts/evaluate_tracking.py baseline full upstream_baseline
 
 # README charts
 .venv/bin/python scripts/generate_portfolio_charts.py
+
+# Showcase video from the saved predictions and tracks (runs/demo/showcase.mp4)
+$UV scripts/make_showcase_video.py
 ```
 
 ## P2PNet training and inference
