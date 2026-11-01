@@ -29,12 +29,29 @@ Source and complete training documentation:
 
 The generic Hugging Face object-detection widget is disabled because its
 bounding-box output contract does not match point localization. Use the
-included inference script or the linked Gradio Space instead.
+included inference script or the
+[Gradio Space](https://huggingface.co/spaces/uwaisasghar/uav-crowd-counting),
+which compares this model with UAV-Dot side by side.
 
 ## Results
 
-All values below use the same 510-frame validation fold. They are not results
-from an independent test set.
+### Independent test set
+
+These results use the official VisDrone2020-CC test sequences (900 frames from 30
+held-out sequences, 137 people per frame), threshold 0.50 and the DroneCrowd
+localization protocol:
+
+| Metric | P2PNet (this model) | UAV-Dot, released weights |
+|---|---:|---:|
+| Count MAE / RMSE | **21.86** / **29.58** | 25.04 / 33.66 |
+| F1 at 16 px | 0.725 | 0.726 |
+| L-mAP (DroneCrowd toolkit, 1–25 px) | **52.49** | 51.00 |
+| fp16 latency, 1920×1080, RTX 4060 Laptop GPU | 114.7 ms | **29.3 ms** |
+
+### Validation fold
+
+The values below use the 510-frame validation fold that also selected the
+checkpoint. They are not independent-test results.
 
 | Metric | Value |
 |---|---:|
