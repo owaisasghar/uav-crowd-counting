@@ -14,6 +14,25 @@ fast one deployable, tests whether more varied training data fixes its blind
 spots, and adds multi-person tracking so a video yields trajectories and
 unique-person counts, not just per-frame totals.
 
+## What I built
+
+- **P2PNet trained for drone footage.** I adapted the ICCV 2021 model to
+  VisDrone2020-CC and fixed an upstream bug that left the localization loss out
+  of training. It is the most accurate counter here (test count error 21.9).
+- **One evaluation for every model** under the official DroneCrowd protocol. It
+  reproduces UAV-Dot's published L-mAP (51.00) exactly.
+- **Fast inference.** fp16 weights, channels-last memory and GPU preprocessing
+  run UAV-Dot at 29 ms per 1080p frame, 3.9x faster than P2PNet at the same F1.
+- **Multi-person tracking.** Feeding the fast detector into uav-dot-track
+  matches the authors' tracks on typical scenes with 5x faster detection. It
+  cuts the error in unique-person counts from 32% to 10%.
+- **An honest domain experiment.** Adding UP-COUNT data fixed low-altitude
+  scenes (F1 0.37 to 0.65) but hurt night scenes, so a decision rule set before
+  testing kept the original model.
+
+Third-party parts: the UAV-Dot model and weights and the uav-dot-track tracker
+(PUT Vision Lab, Apache-2.0), and the P2PNet architecture (Tencent, ICCV 2021).
+
 ## Results at a glance
 
 VisDrone2020-CC test set: 900 frames from 30 held-out sequences, 137 people per
@@ -277,9 +296,13 @@ PYTHONPATH=. .venv/bin/python scripts/infer_p2p_video.py --input path/to/video.m
   --threshold 0.5 --inference-fps 5 --max-side 1280 --device auto --half
 ```
 
-`huggingface/` is a ready model-repository package, and `huggingface_space/`
-is a Gradio image demo; see
-[`docs/PORTFOLIO_PUBLISHING.md`](docs/PORTFOLIO_PUBLISHING.md). No script
+- **`huggingface/`:** a ready model-repository package for P2PNet.
+- **`huggingface_space/`:** a Gradio demo that runs UAV-Dot and P2PNet side by
+  side on an uploaded image. Its standalone UAV-Dot runtime fetches the released
+  weights from the authors' mirror and checks their SHA-256, so the weights are
+  never re-hosted. It matches the original model on 99.6% of points.
+
+See [`docs/PORTFOLIO_PUBLISHING.md`](docs/PORTFOLIO_PUBLISHING.md). No script
 publishes anything automatically.
 
 ## Known limitations

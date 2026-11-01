@@ -57,9 +57,21 @@ Apache, or another permissive license.
 ## Hugging Face Space
 
 The contents of `huggingface_space/` are intended to become a separate Gradio
-Space. The Space downloads `model.safetensors` and `p2pnet_runtime.py` from the
-model repository. Update `P2PNET_MODEL_ID` in the Space settings if the final
-model ID differs.
+Space that compares UAV-Dot and P2PNet side by side:
+
+- **P2PNet:** the Space downloads `model.safetensors` and `p2pnet_runtime.py`
+  from the model repository. Update `P2PNET_MODEL_ID` in the Space settings if
+  the final model ID differs.
+- **UAV-Dot:** `uavdot_runtime.py` fetches the released weights from the UAV-Dot
+  authors' public mirror on first use and checks their SHA-256, so the Space
+  never re-hosts them. Keep `LICENSE-uav-dot.txt` with the runtime (Apache-2.0).
+
+Test it locally before pushing:
+
+```bash
+cd huggingface_space
+P2PNET_MODEL_DIR=../huggingface ../.venv/bin/python app.py
+```
 
 Do not include VisDrone images as examples unless their redistribution terms
 have been reviewed. Prefer an authorized image from the intended deployment
