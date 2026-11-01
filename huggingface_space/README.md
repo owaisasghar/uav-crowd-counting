@@ -8,7 +8,7 @@ app_file: app.py
 pinned: false
 license: other
 models:
-  - owaisasghar/p2pnet-visdrone-head-counting
+  - uwaisasghar/p2pnet-visdrone-head-counting
 ---
 
 # UAV crowd counting: UAV-Dot vs P2PNet
@@ -25,7 +25,7 @@ confidence scores and inference timing.
 ## Where the models come from
 
 - **P2PNet:** loaded from the model repository set by `P2PNET_MODEL_ID`
-  (default `owaisasghar/p2pnet-visdrone-head-counting`).
+  (default `uwaisasghar/p2pnet-visdrone-head-counting`).
 - **UAV-Dot:** the released DOT + Pixel Distill DroneCrowd weights are **not
   re-hosted**. On first use, `uavdot_runtime.py` downloads them from the UAV-Dot
   authors' public mirror and refuses any file whose SHA-256 differs. The cache

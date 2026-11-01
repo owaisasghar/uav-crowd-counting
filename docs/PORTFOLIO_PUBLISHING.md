@@ -47,8 +47,8 @@ PYTHONPATH=. .venv/bin/python scripts/export_huggingface_model.py \
   --output huggingface/model.safetensors
 ```
 
-Before upload, replace `owaisasghar/p2pnet-visdrone-head-counting` if the Hub
-namespace differs. The contents of `huggingface/` are intended to become the
+The Hugging Face account is `uwaisasghar` (GitHub: `owaisasghar`), so the model
+repository is `uwaisasghar/p2pnet-visdrone-head-counting`. The contents of `huggingface/` are intended to become the
 root of a Hugging Face model repository.
 
 The model card uses a custom academic-only license. Do not change it to MIT,

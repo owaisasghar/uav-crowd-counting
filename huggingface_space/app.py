@@ -16,7 +16,7 @@ import uavdot_runtime
 
 MODEL_ID = os.getenv(
     "P2PNET_MODEL_ID",
-    "owaisasghar/p2pnet-visdrone-head-counting",
+    "uwaisasghar/p2pnet-visdrone-head-counting",
 )
 LOCAL_MODEL_DIR = os.getenv("P2PNET_MODEL_DIR")
 UAVDOT_CHECKPOINT_DIR = Path(os.getenv("UAVDOT_CHECKPOINT_DIR", Path.home() / ".cache" / "uavdot"))
