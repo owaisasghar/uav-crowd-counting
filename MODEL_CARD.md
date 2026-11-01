@@ -111,6 +111,24 @@ Validation-only calibration selected threshold 0.60 for MAE 9.2902 and
 threshold 0.55 for F1@16px 0.8160. Those tuned values are not independent-test
 estimates.
 
+### Independent test set
+
+These results use the official VisDrone2020-CC test sequences (900 frames from
+30 sequences, 137.1 people per frame), the fixed 0.50 threshold and the
+DroneCrowd localization protocol (`scripts/evaluate_dronecrowd.py`):
+
+| Metric | Value |
+|---|---:|
+| Count MAE / RMSE | 21.86 / 29.58 |
+| Precision / recall / F1 @ 16 px | 0.745 / 0.706 / 0.725 |
+| L-mAP (DroneCrowd toolkit, 1–25 px) | 52.49 |
+| F1 @ 16 px on low-altitude sequences 00017, 00018 | 0.39 |
+| F1 @ 16 px on night sequences 00069, 00070, 00074 | 0.16 |
+| fp16 latency, 1920×1080, RTX 4060 Laptop GPU | 114.7 ms |
+
+The test MAE is about twice the validation MAE: the test set is harder (night,
+very low altitude and dense scenes) than the fold-0 validation sequences.
+
 ## Limitations and risks
 
 - Small, occluded, blurred, or low-contrast heads can be missed.

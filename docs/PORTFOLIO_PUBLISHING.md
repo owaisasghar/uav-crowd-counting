@@ -18,10 +18,12 @@ performing any remote write automatically.
    computer-vision
    crowd-counting
    head-detection
+   multi-object-tracking
    p2pnet
    point-localization
    pytorch
    uav
+   uav-dot
    visdrone
    ```
 
@@ -67,6 +69,12 @@ camera, and label any external-domain result clearly.
 
 - Say “P2PNet adaptation” or “extension,” not “reproduction of the MDPI model.”
 - Report MAE/RMSE for counts and pixel-radius P/R/F1/AP for localization.
-- State that the current metrics use one validation fold.
-- Do not call 4.11 full-resolution forward FPS “real time.”
+- State that the validation metrics use one fold; quote test-set numbers
+  (`runs/eval/test_metrics.json`) as the headline.
+- Speed claims: UAV-Dot 29 ms (34 FPS) and P2PNet 115 ms per 1080p frame are
+  model-only fp16 timings on an RTX 4060 Laptop GPU; end-to-end with decoding is
+  42 ms and 128 ms. Quote the hardware with every number.
+- UAV-Dot's weights and the tracker are third-party (Apache-2.0): say “integrated,
+  evaluated and optimized,” never “developed.” The UP-COUNT fine-tune did not beat
+  the released weights on test; present it as a negative result.
 - Do not claim state of the art without a matched independent benchmark.

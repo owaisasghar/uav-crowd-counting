@@ -11,6 +11,7 @@ __pycache__/
 *.mp4
 *.MP4
 data/
+external/
 runs/
 checkpoints/
 inference/
